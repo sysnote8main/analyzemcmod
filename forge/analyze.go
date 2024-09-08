@@ -43,5 +43,8 @@ func GetModidFromJar(jarPath string) (*common.ModInfo, error) {
 	if err := json.Unmarshal([]byte(s), &modInfo); err != nil {
 		return nil, err
 	}
+	if len(modInfo) != 1 {
+		return nil, fmt.Errorf("failed to parse mod data")
+	}
 	return &modInfo[0], nil
 }
